@@ -2,13 +2,13 @@ import React from "react";
 import memo from "./images/memo.jpg";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
+import "./App.css";
 
 const App = () => {
   return (
     <div className="app container mt-5 text-center">
-      <header>
-        <h1>Memories</h1>
-        <img src={memo} className="w-50" alt="logo" />
+      <header className="d-flex justify-content-center align-items-center">
+        <img src={memo} className="w-25" alt="logo" />
       </header>
       <div className="content row">
         <div className="col-5">
