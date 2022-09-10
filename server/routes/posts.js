@@ -1,9 +1,8 @@
 import express from "express";
+import * as controllers from "../controllers/posts.js";
 
 const routes = express.Router();
 
-routes.get("/", (req, res) => {
-  res.send("POSTS");
-});
+routes.get("/", controllers.getPosts);
 
 export default routes;
