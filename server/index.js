@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import postsRoute from "./routes/posts.js";
 
 const app = express();
 const port = 5000;
@@ -10,6 +11,10 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+// routes
+app.use("/posts", postsRoute);
+
+// main endpoint test
 app.get("/", (req, res) => {
   res.send("Hello , server!");
 });
