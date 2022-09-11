@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Form.css";
+import { useDispatch } from "react-redux";
+import { createPost } from "../../redux/actions/posts";
 
 const Form = () => {
   const [postData, setPostData] = useState({
@@ -9,7 +11,12 @@ const Form = () => {
     tags: "",
   });
 
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createPost(postData));
+  };
   const clear = () => {};
   return (
     <>
@@ -21,23 +28,27 @@ const Form = () => {
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
+          placeholder="creator"
         />
         <input
           name="title"
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+          placeholder="title"
         />
         <input
           name="message"
           value={postData.message}
           onChange={(e) =>
-            setPostData({ ...postMessage, message: e.target.value })
+            setPostData({ ...postData, message: e.target.value })
           }
+          placeholder="message"
         />
         <input
           name="tags"
           value={postData.tags}
           onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          placeholder="tags"
         />
         <button
           className="btn btn-primary"
