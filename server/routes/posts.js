@@ -5,5 +5,6 @@ const routes = express.Router();
 
 routes.get("/", controllers.getPosts);
 routes.post("/", controllers.createPost);
+routes.patch("/:id", controllers.updatePost);
 
 export default routes;
