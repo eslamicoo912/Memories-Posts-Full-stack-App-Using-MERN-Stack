@@ -5,14 +5,10 @@ import { useSelector } from "react-redux";
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
-  return (
-    <>
-      <h1>Posts</h1>
-      <Post />
-      <Post />
-    </>
-  );
+  const postsList = posts.map((post) => {
+    return <Post post={post} key={post.id} />;
+  });
+  return <>{postsList}</>;
 };
 
 export default Posts;
