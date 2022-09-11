@@ -4,7 +4,7 @@ import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import "./App.css";
 import { useDispatch } from "react-redux";
-import getPosts from "./redux/actions/posts";
+import { getPosts } from "./redux/actions/posts";
 
 const App = () => {
   const dispatch = useDispatch();
