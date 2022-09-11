@@ -3,3 +3,13 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+header h2 {
+  background-color: #ddc153;
+  color: white;
+  padding: 10px;
+  width: 100vw;
+  border-radius: 5px;
+  font-family: cursive;
+  letter-spacing: 5px;
+}

@@ -20,7 +20,7 @@ const Form = () => {
   const clear = () => {};
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="d-flex flex-column">
         <h4>Creating a memory</h4>
         <input
           name="creator"
@@ -50,14 +50,10 @@ const Form = () => {
           onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
           placeholder="tags"
         />
-        <button
-          className="btn btn-primary"
-          type="submit"
-          onClick={handleSubmit}
-        >
+        <button className="submit" type="submit" onClick={handleSubmit}>
           Submit
         </button>
-        <button className="btn btn-danger" onClick={clear}>
+        <button className="clear" onClick={clear}>
           Clear
         </button>
       </form>

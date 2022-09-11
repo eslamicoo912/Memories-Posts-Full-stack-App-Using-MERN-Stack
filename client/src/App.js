@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import memo from "./images/memo.jpg";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import "./App.css";
 import { useDispatch } from "react-redux";
 import { getPosts } from "./redux/actions/posts";
+import { FaBook } from "react-icons/fa";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,10 +14,10 @@ const App = () => {
   }, [dispatch]);
   return (
     <div className="app container mt-5 text-center">
-      <header className="d-flex justify-content-center align-items-center">
-        <img src={memo} className="w-25" alt="logo" />
+      <header className="pt-5 d-flex justify-content-center align-items-center">
+        <h2>memories</h2>
       </header>
-      <div className="content row">
+      <div className="content row mt-5 pt-5">
         <div className="col-5">
           <Posts />
         </div>
