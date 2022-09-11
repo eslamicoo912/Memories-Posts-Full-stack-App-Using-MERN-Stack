@@ -1,0 +1,17 @@
+.like,
+.delete {
+  cursor: pointer;
+  font-size: 3rem;
+}
+h3,
+h4,
+p {
+  font-family: cursive;
+  padding: 10px;
+}
+
+h3 {
+  background-color: #ddc153;
+  color: white;
+  text-transform: uppercase;
+}
