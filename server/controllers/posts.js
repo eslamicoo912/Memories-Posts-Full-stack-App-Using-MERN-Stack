@@ -20,3 +20,13 @@ export const getPosts = async (req, res) => {
     console.log(error.message);
   }
 };
+
+export const getOne = async (req, res) => {
+  try {
+    const title = req.params.title;
+    const post = await PostMessage.find({ title: `${title}` });
+    res.status(200).json(post);
+  } catch (error) {
+    console.log(error);
+  }
+};
