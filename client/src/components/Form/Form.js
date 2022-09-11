@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Form.css";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../redux/actions/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../../redux/actions/posts";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -12,16 +12,31 @@ const Form = () => {
   });
 
   const dispatch = useDispatch();
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
+    clear();
   };
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({ creator: "", title: "", message: "", tags: "" });
+  };
   return (
     <>
       <form onSubmit={handleSubmit} className="d-flex flex-column">
-        <h4>Creating a memory</h4>
+        <h4>{currentId ? `Editting` : `Creating`} a memory</h4>
         <input
           name="creator"
           value={postData.creator}

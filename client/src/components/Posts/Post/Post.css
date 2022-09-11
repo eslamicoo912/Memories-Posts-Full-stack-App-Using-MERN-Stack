@@ -1,8 +1,14 @@
 .like,
-.delete {
+.delete,
+.edit {
   cursor: pointer;
   font-size: 3rem;
 }
+
+.edit {
+  color: dodgerblue;
+}
+
 h3,
 h4,
 p {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import "./App.css";
@@ -6,11 +6,12 @@ import { useDispatch } from "react-redux";
 import { getPosts } from "./redux/actions/posts";
 
 const App = () => {
+  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts);
-  }, [dispatch]);
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
   return (
     <div className="app text-center">
       <header className="d-flex justify-content-center align-items-center">
@@ -20,11 +21,11 @@ const App = () => {
       </header>
       <div className="container m-auto content row mt-5 pt-5">
         <div className="col-5">
-          <Posts />
+          <Posts setCurrentId={setCurrentId} />
         </div>
         <div className="col"></div>
         <div className="col-5">
-          <Form />
+          <Form currentId={currentId} setCurrentId={setCurrentId} />
         </div>
       </div>
     </div>
