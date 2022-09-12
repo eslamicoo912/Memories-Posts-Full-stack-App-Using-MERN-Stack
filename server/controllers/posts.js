@@ -38,3 +38,14 @@ export const updatePost = async (req, res) => {
     console.log(error);
   }
 };
+
+export const deletePost = async (req, res) => {
+  try {
+    const { id: _id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(_id))
+      return res.status(404).send("id not found");
+    res.send(`post ${_id} deleted`);
+  } catch (error) {
+    console.log(error);
+  }
+};
