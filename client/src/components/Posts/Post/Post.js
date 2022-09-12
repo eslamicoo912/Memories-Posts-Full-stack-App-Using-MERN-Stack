@@ -3,13 +3,11 @@ import "./Post.css";
 import { FcLike } from "react-icons/fc";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../../redux/actions/posts";
+import { deletePost, likePost } from "../../../redux/actions/posts";
 
 const Post = ({ post, setCurrentId }) => {
-  const { _id, title, message, creator } = post;
+  const { _id, title, message, creator, likeCount } = post;
   const dispatch = useDispatch();
-
-  const likeBtn = () => {};
 
   return (
     <div className="post my-5 card w-75" key={_id}>
@@ -17,7 +15,13 @@ const Post = ({ post, setCurrentId }) => {
       <h4>{creator}</h4>
       <p>{message}</p>
       <div className="btns d-flex justify-content-between">
-        <FcLike onClick={() => likeBtn} className="mx-5 mb-4 like"></FcLike>
+        <FcLike
+          onClick={() => {
+            dispatch(likePost(_id));
+          }}
+          className="mx-5 mb-4 like"
+        ></FcLike>
+        {likeCount}
         <AiFillEdit
           onClick={() => setCurrentId(_id)}
           className="mx-5 mb-4 edit"
