@@ -3,9 +3,12 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import postsRoute from "./routes/posts.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
@@ -20,10 +23,8 @@ app.get("/", (req, res) => {
 });
 
 // database connection
-const CONNECTION_URL =
-  "mongodb+srv://eslamicoo912:671973@cluster0.frlrshg.mongodb.net/?retryWrites=true&w=majority";
 mongoose
-  .connect(CONNECTION_URL, {
+  .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
