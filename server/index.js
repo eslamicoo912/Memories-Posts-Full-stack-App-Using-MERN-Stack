@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import postsRoute from "./routes/posts.js";
+import usersRoute from "./routes/users.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 // routes
 app.use("/posts", postsRoute);
+app.use("/users", usersRoute);
 
 // main endpoint test
 app.get("/", (req, res) => {
