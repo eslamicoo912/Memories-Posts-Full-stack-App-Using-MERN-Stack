@@ -14,14 +14,15 @@ const Post = ({ post, setCurrentId }) => {
       <h3>{title}</h3>
       <h4>{creator}</h4>
       <p>{message}</p>
-      <div className="btns d-flex justify-content-between">
+      <div className="btns d-flex justify-content-between align-items-center">
         <FcLike
           onClick={() => {
             dispatch(likePost(_id));
+            window.location = "/";
           }}
           className="mx-5 mb-4 like"
         ></FcLike>
-        {likeCount}
+        <h6 className="likes mb-4">{likeCount}</h6>
         <AiFillEdit
           onClick={() => setCurrentId(_id)}
           className="mx-5 mb-4 edit"
