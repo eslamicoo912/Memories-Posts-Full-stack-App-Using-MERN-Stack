@@ -13,7 +13,11 @@ export const createUser = async (req, res) => {
       .then((hash) => {
         const user = new UserModel({ username: username, password: hash });
         user.save();
-        res.json({ message: `${username} created successfully`, data: user });
+        res.json({
+          message: `${username} created successfully`,
+          data: user,
+          token: generateToken(user._id),
+        });
       })
       .catch((error) => {
         console.log(error.message);

@@ -4,5 +4,9 @@ export default (users = [], action) => {
   switch (action.type) {
     case "LOGIN":
       return action.payload;
+    case "REGISTER":
+      return [...users, action.payload];
+    default:
+      return users;
   }
 };

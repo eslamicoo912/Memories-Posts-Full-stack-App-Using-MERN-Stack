@@ -1,14 +1,26 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/actions/users";
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(registerUser(formData.username, formData.password));
+  };
 
   return (
     <div className="text-center mt-5 pt-5">
@@ -27,7 +39,7 @@ const Register = () => {
           placeholder="password"
           type="password"
           name="password"
-          value={formData.username}
+          value={formData.password}
           onChange={handleChange}
         />
         <button className="btn btn-dark" type="submit">

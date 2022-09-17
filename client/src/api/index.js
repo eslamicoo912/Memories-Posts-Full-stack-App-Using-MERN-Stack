@@ -10,5 +10,7 @@ export const likePost = (id) => axios.patch(`${url}/${id}/like`);
 
 // user authentication
 const userUrl = "http://localhost:5000/users";
+export const register = (username, password) =>
+  axios.post(`${userUrl}`, { username, password });
 export const login = (username, password) =>
   axios.post(`${userUrl}/login`, { username, password });
