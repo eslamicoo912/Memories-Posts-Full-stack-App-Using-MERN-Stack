@@ -15,6 +15,11 @@ export const loginUser = (username, password) => async (dispatch) => {
   try {
     const response = await api.login(username, password);
     const action = { type: "LOGIN", payload: response.data };
+    localStorage.setItem("id", response.data.id);
+    localStorage.setItem("username", response.data.username);
+    localStorage.setItem("token", response.data.token);
+    alert("Logged in successfully");
+    window.location = "/";
     dispatch(action);
   } catch (error) {
     console.log(error.message);
