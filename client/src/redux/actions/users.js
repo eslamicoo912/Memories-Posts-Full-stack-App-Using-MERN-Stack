@@ -4,7 +4,7 @@ export const registerUser = (username, password) => async (dispatch) => {
   try {
     const response = await api.register(username, password);
     const action = { type: "REGISTER", payload: response.data };
-    console.log(response.data);
+    window.location = "/login";
     dispatch(action);
   } catch (error) {
     console.log(error.message);
