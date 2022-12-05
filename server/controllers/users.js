@@ -40,7 +40,10 @@ export const getUser = async (req, res) => {
   const { username } = req.params;
   try {
     const user = await UserModel.findOne({ username: username });
-    res.json({ user });
+    const { visibility } = user;
+    if (visibility)
+      return res.status(200).json({ message: "success", user: user });
+    return res.status(200).json({ message: "fail" });
   } catch (error) {
     console.log(error.message);
   }
