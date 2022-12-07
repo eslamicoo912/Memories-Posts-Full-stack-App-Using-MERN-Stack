@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../redux/actions/users";
+import axios from "axios";
 
 const Login = () => {
-  const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -17,9 +14,17 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(formData.username, formData.password));
+    const response = await axios.post(
+      "http://localhost:5000/users/login",
+      formData
+    );
+    if (response.status === 200) {
+      const { data } = response;
+      sessionStorage.setItem("user", JSON.stringify(data));
+    }
+    window.location = "/";
   };
 
   return (

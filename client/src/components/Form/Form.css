@@ -1,8 +1,29 @@
+.write {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.write form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
 form input {
+  width: 500px;
   padding: 10px;
-  margin: 15px;
   border: none;
   border-bottom: 0.001rem solid black;
+}
+
+form textarea {
+  width: 500px;
+  height: 250px;
+  padding: 20px;
 }
 
 input:focus {
@@ -14,12 +35,20 @@ input::placeholder {
   letter-spacing: 2px;
 }
 
+form .btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
 form button {
   margin: 15px;
   padding: 12px;
   color: white;
   font-size: larger;
   border: none;
+  cursor: pointer;
 }
 
 form button.submit {

@@ -1,49 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Form.css";
-import { useDispatch, useSelector } from "react-redux";
-import { createPost, updatePost } from "../../redux/actions/posts";
+import axios from "axios";
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = () => {
   const [postData, setPostData] = useState({
-    creator: "",
+    img: "",
     title: "",
-    message: "",
-    tags: "",
+    description: "",
   });
 
-  const dispatch = useDispatch();
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
-  );
-
-  useEffect(() => {
-    if (post) setPostData(post);
-  }, [post]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (currentId) {
-      dispatch(updatePost(currentId, postData));
-    } else {
-      dispatch(createPost(postData));
-    }
-    clear();
+    await axios.post("http://localhost:5000/posts", postData);
+    window.location = "/";
   };
   const clear = () => {
-    setCurrentId(null);
-    setPostData({ creator: "", title: "", message: "", tags: "" });
+    setPostData({ img: "", title: "", description: "" });
   };
   return (
-    <>
+    <div className="write">
       <form onSubmit={handleSubmit} className="d-flex flex-column">
-        <h4>{currentId ? `Editting` : `Creating`} a memory</h4>
         <input
-          name="creator"
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-          placeholder="creator"
+          name="img"
+          value={postData.img}
+          onChange={(e) => setPostData({ ...postData, img: e.target.value })}
+          placeholder="img"
         />
         <input
           name="title"
@@ -51,28 +32,25 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
           placeholder="title"
         />
-        <input
-          name="message"
-          value={postData.message}
+        <textarea
+          name="description"
+          value={postData.description}
           onChange={(e) =>
-            setPostData({ ...postData, message: e.target.value })
+            setPostData({ ...postData, description: e.target.value })
           }
-          placeholder="message"
-        />
-        <input
-          name="tags"
-          value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
-          placeholder="tags"
-        />
-        <button className="submit" type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-        <button className="clear" onClick={clear}>
-          Clear
-        </button>
+          placeholder="description"
+        ></textarea>
+
+        <div className="btns">
+          <button className="submit" type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
+          <button className="clear" onClick={clear}>
+            Clear
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 

@@ -1,32 +1,54 @@
-import React from "react";
-import Posts from "../Posts/Posts";
-import Form from "../Form/Form";
-import { useState, useEffect } from "react";
-import { getPosts } from "../../redux/actions/posts";
-import { useDispatch } from "react-redux";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { BsFillPencilFill } from "react-icons/bs";
+import Post from "../Post/Post";
+import "./Home.css";
 
 const Home = () => {
-  const [currentId, setCurrentId] = useState(null);
-  const dispatch = useDispatch();
+  const [posts, setPosts] = useState([]);
 
-  const token = localStorage.getItem("token");
+  const user = sessionStorage.getItem("user");
+
+  const getPosts = async () => {
+    const response = await axios.get("http://localhost:5000/posts");
+    const { data } = response;
+    setPosts(data);
+  };
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
+    getPosts();
+  }, []);
 
-  if (!token) {
-    return <h1 className="mt-5 pt-5">Login First To See Memories</h1>;
+  if (!user) {
+    return <h1 className="mt-5 pt-5">Login To See Blogs</h1>;
   }
 
   return (
-    <div className="container m-auto content row mt-5 pt-5">
-      <div className="col-5">
-        <Posts setCurrentId={setCurrentId} />
-      </div>
-      <div className="col"></div>
-      <div className="col-5">
-        <Form currentId={currentId} setCurrentId={setCurrentId} />
+    <div className="home">
+      <header className="d-flex justify-content-between align-items-center p-3">
+        <div className="title">
+          <h1>GoSocial</h1>
+          <p>
+            <BsFillPencilFill className="icon" /> . Write Your Blog Easily
+          </p>
+        </div>
+      </header>
+      <div className="posts-list">
+        {posts.map((item, index) => {
+          const { _id, img, title, description, likes, dislikes } = item;
+
+          return (
+            <Post
+              key={index}
+              id={_id}
+              img={img}
+              title={title}
+              description={description}
+              likes={likes}
+              dislikes={dislikes}
+            />
+          );
+        })}
       </div>
     </div>
   );

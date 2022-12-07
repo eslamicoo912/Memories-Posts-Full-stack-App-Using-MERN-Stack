@@ -1,0 +1,43 @@
+header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header div {
+  margin: auto;
+}
+
+header h1 {
+  font-size: 7rem;
+  color: #7d1316;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 2.5rem;
+}
+
+header .icon {
+  color: #fa0020;
+}
+
+.home .title {
+  text-align: center;
+}
+
+.home .title h1 {
+  color: #00b67a;
+  letter-spacing: 1px;
+}
+
+.home .posts-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  margin-bottom: 50px;
+}

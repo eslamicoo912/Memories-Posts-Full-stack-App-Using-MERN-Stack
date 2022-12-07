@@ -1,0 +1,30 @@
+nav {
+  position: absolute;
+  background-color: #dcede9;
+  width: 100%;
+  padding-top: 15px;
+  top: 0;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 130px;
+}
+
+nav ul li a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-weight: 300;
+}
+
+nav .icon {
+  font-size: 2.3rem;
+  color: black;
+  cursor: pointer;
+}

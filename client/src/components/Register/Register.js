@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/actions/users";
+import axios from "axios";
 
 const Register = () => {
-  const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -17,9 +14,9 @@ const Register = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(registerUser(formData.username, formData.password));
+    await axios.post("http://localhost:5000/users", formData);
   };
 
   return (
