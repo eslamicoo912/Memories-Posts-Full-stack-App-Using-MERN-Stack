@@ -12,6 +12,10 @@ const User = mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  postsCount: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const UserModel = mongoose.model("UserModel", User);

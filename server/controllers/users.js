@@ -37,13 +37,32 @@ export const getAll = async (req, res) => {
 };
 
 export const getUser = async (req, res) => {
-  const { username } = req.params;
+  const { id } = req.params;
   try {
-    const user = await UserModel.findOne({ username: username });
+    const user = await UserModel.findOne({ _id: id });
     const { visibility } = user;
-    if (visibility)
-      return res.status(200).json({ message: "success", user: user });
+    if (visibility) return res.status(200).json(user);
     return res.status(200).json({ message: "fail" });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const updatePostsCount = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await UserModel.findOne({ _id: id });
+    await UserModel.updateOne(
+      { _id: id },
+      {
+        img: user.img,
+        username: user.username,
+        password: user.password,
+        visibility: user.visibility,
+        postsCount: user.postsCount + 1,
+      }
+    );
+    res.json(user);
   } catch (error) {
     console.log(error.message);
   }

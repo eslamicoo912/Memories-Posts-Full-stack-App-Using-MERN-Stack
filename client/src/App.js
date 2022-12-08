@@ -6,6 +6,8 @@ import Register from "./components/Register/Register";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Form from "./components/Form/Form";
+import Users from "./components/Users/Users";
+import User from "./components/Users/User/User";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/write" element={<Form />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/users/:_id" element={<User />} />
         </Routes>
       </Router>
     </div>

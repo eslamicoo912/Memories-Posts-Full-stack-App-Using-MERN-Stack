@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Form = () => {
   const [postData, setPostData] = useState({
+    userId: sessionStorage.getItem("user"),
     img: "",
     title: "",
     description: "",
@@ -12,6 +13,9 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.post("http://localhost:5000/posts", postData);
+    await axios.patch(
+      `http://localhost:5000/users/${sessionStorage.getItem("user")}/post`
+    );
     window.location = "/";
   };
   const clear = () => {

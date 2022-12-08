@@ -22,7 +22,8 @@ const Login = () => {
     );
     if (response.status === 200) {
       const { data } = response;
-      sessionStorage.setItem("user", JSON.stringify(data));
+      console.log(data);
+      sessionStorage.setItem("user", data.id);
     }
     window.location = "/";
   };

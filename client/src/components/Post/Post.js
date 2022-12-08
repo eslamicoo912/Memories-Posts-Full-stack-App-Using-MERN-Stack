@@ -18,6 +18,7 @@ export default function Post({ id, img, title, description, likes, dislikes }) {
     const post = await axios.get(`http://localhost:5000/posts/${id}`);
     const { data } = post;
     setLikesNum(data.likes);
+    console.log(post.data);
   };
   const dislikeClick = async () => {
     await axios.patch(`http://localhost:5000/posts/${id}/dislike`, {
@@ -38,6 +39,7 @@ export default function Post({ id, img, title, description, likes, dislikes }) {
         <img src={img} alt="img" />
         <div className="info">
           <h3 className="title">{title}</h3>
+          <hr />
           <h6 className="desc">{description}</h6>
         </div>
       </div>

@@ -1,0 +1,11 @@
+.user-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.user-page img {
+  width: 200px;
+  height: 200px;
+}
